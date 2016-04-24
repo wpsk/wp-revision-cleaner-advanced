@@ -19,11 +19,12 @@ class WPRCA_Revisions {
 
 		$date_to_delete_revisions_before = $current_date->sub( new DateInterval( 'P30D' ) ); //TODO: fill-in days
 
-		$this->get_revisions_before_date( $date_to_delete_revisions_before );
+		$this->get_revisions_ids_before_date( $date_to_delete_revisions_before );
 	}
 
-	public function get_revisions_before_date( $date ) {
+	public function get_revisions_ids_before_date( $date ) {
 		$revisions_params = array(
+			'fields'      => 'ids',
 			'post_type'   => 'revision',
 			'post_status' => 'inherit',
 			'date_query'  => array(
@@ -39,6 +40,6 @@ class WPRCA_Revisions {
 
 		$revisions_query = new WP_Query( $revisions_params );
 
-		$revisions = $revisions_query->get_posts();
+		return $revisions_query->get_posts();
 	}
 }
