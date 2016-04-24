@@ -29,7 +29,7 @@ class WPRCA_Cron {
 	 */
 	public function setup_schedule() {
 	if (!wp_next_scheduled(self::HOOK_NAME)) {
-		wp_schedule_event(time(), self::CUSTOM_INTERVAL_NAME, self::HOOK_NAME);
+		wp_schedule_event(time(), self::INTERVAL, self::HOOK_NAME);
 	}
 	}
 
@@ -37,7 +37,7 @@ class WPRCA_Cron {
 	 * On activation, set a time, frequency and name of an action hook to be scheduled.
 	 */
 	public function activate() {
-	wp_schedule_event(time(), self::CUSTOM_INTERVAL_NAME, self::HOOK_NAME);
+	wp_schedule_event(time(), self::INTERVAL, self::HOOK_NAME);
 	}
 
 	/**
