@@ -45,7 +45,11 @@ class WPRCA_Cron {
 	 */
 	public function sync_with_data_sources() {
 
-	//  @todo run the cron job task
+	    //  run the cron job task
+	    $worker = new WPRCA_Revisions();
+	    $worker->delete_revisions_older_than(800);
+	    
+	
 	self::setup_schedule();
 	}
 

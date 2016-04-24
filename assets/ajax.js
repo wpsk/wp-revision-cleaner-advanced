@@ -3,7 +3,7 @@ jQuery(document).ready(function($) {
 	var wprcaAjaxForm = $( '#wprca-ajax-form' ),
 			wprcaAjaxProgressWrapper = $( '#wprca-ajax' ),
 			wprcaAjaxProgressBar = wprcaAjaxProgressWrapper.find( '.wprca-ajax-progress-bar' ),
-			wprcaAjaxProgressStatus = wprcaAjaxProgressWrapper.find( '.wprca-ajax-status' ),
+			wprcaAjaxProgressStatus = wprcaAjaxProgressWrapper.find( '.wprca-ajax-status' );
 
 	$( wprcaAjaxForm ).submit( function(e) {
 		e.preventDefault();
@@ -30,7 +30,7 @@ jQuery(document).ready(function($) {
 			},
 			fail: function() {
 				alert( 'sorry, revision deletion failed' );
-			}
+			},
 			done: function( response ) {
 				if( response.status == 'working' ) {
 					wprcaUpdateAjaxProgress( response.progress );
@@ -47,7 +47,7 @@ jQuery(document).ready(function($) {
 
 	function wprcaUpdateAjaxProgress( progress ) {
 		wprcaAjaxProgress.find( '.wprca-progress-bar-progress' ).css({ 'width': progress.percentage + '%' });
-		wprcaAjaxProgress.find( '.wprca-progress-bar-status' ).text( progress.done ' / ' progress.count );
+		wprcaAjaxProgress.find( '.wprca-progress-bar-status' ).text( progress.done + ' / ' + progress.count );
 	}
 
 	function wprcaFinishAjax( result ) {
@@ -55,4 +55,4 @@ jQuery(document).ready(function($) {
 		wprcaAjaxProgress.find( '.progress-status' ).text( result );
 	}
 
-}
+});

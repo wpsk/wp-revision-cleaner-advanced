@@ -2,10 +2,10 @@
 
 /*
  * Plugin Name: Revision Cleaner Advanced
- * Description: 
+ * Description: Automatic cleanup of revision easier than ever before.
  * Version: 1.0.0
  * Author: WordPress.sk
- * Author URI: http://wp.sk/
+ * Author URI: http://www.wp.sk/
  * License: GPL2
  * License URI: https://www.gnu.org/licenses/gpl-2.0.html
  */
@@ -27,9 +27,6 @@ load_plugin_textdomain('wprca', false, dirname(plugin_basename(__FILE__)) . '/i1
 
 WPRCA_Core::init();
 $cron = new WPRCA_Cron();
-
-$revisions = new WPRCA_Revisions();
-$revisions->init();
 
 //	activation & deactivation hooks (these MUST be in this file)
 register_activation_hook(__FILE__, array($cron, 'activate'));
