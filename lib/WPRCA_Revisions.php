@@ -19,16 +19,20 @@ class WPRCA_Revisions {
 
 		$date_to_delete_revisions_before = $current_date->sub( new DateInterval( 'P30D' ) ); //TODO: fill-in days
 
-		$posts = $this->get_posts_before_date( $date_to_delete_revisions_before );
-		
-		$this->delete_posts_revisions($posts);
+		$revisions = $this->get_revisions_ids_before_date( $date_to_delete_revisions_before );
+
+		$this->delete_revisions( $revisions );
 	}
 
-	public function get_posts_before_date( $date ) {
+	public function get_revisions_ids_before_date( $date ) {
 		// TODO: get only subset of all posts (chunks).
-
-		$posts_params = array(
-			'date_query' => array(
+		$revisions_params = array(
+			'fields'      => 'id=>parent',
+			'post_type'   => 'revision',
+			'post_status' => 'inherit',
+			'orderby'     => 'post_date',
+			'order'       => 'ASC',
+			'date_query'  => array(
 				array(
 					'before' => array(
 						'year'  => $date->format( 'Y' ),
@@ -39,24 +43,14 @@ class WPRCA_Revisions {
 			)
 		);
 
-		$posts_query = new WP_Query( $posts_params );
+		$revisions_query = new WP_Query( $revisions_params );
 
-		return $posts_query->get_posts();
-	}
-
-	public function delete_posts_revisions( $posts ) {
-		foreach ( $posts as $post ) {
-			$post_revisions = wp_get_post_revisions( $post );
-
-			if ( ! empty( $post_revisions ) ) {
-				$this->delete_revisions( $post_revisions );
-			}
-		}
+		return $revisions_query->get_posts();
 	}
 
 	public function delete_revisions( $revisions ) {
-		foreach ( $revisions as $revision ) {
-			wp_delete_post_revision( $revision->ID );
+		foreach ( $revisions as $revision_id => $post_id ) {
+			wp_delete_post_revision( $revision_id );
 		}
 	}
 }
