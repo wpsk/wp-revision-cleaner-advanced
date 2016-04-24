@@ -1,7 +1,7 @@
 <?php
 
 /*
- * Plugin Name: Revision Cleaner Advanced for WordPress
+ * Plugin Name: Revision Cleaner Advanced
  * Description: 
  * Version: 1.0.0
  * Author: WordPress.sk
@@ -18,16 +18,15 @@ define('WPRCA_PLUGIN_DIR', $plugin_dir);
 define('WPRCA_PLUGIN_INDEX', __FILE__);
 
 require_once 'lib' . DIRECTORY_SEPARATOR . 'WPRCA_Core.php';
+require_once 'lib' . DIRECTORY_SEPARATOR . 'WPRCA_Cron.php';
 require_once 'lib' . DIRECTORY_SEPARATOR . 'WPRCA_Revisions.php';
 
 // enable I18N
 load_plugin_textdomain('wprca', false, dirname(plugin_basename(__FILE__)) . '/i18n/');
 
 WPRCA_Core::init();
-$revisions = new WPRCA_Revisions();
-$revisions->init();
-//$cron = new WPRCA_Cron();
+$cron = new WPRCA_Cron();
 
 //	activation & deactivation hooks (these MUST be in this file)
-//register_activation_hook(__FILE__, array($cron, 'activate'));
-//register_deactivation_hook(__FILE__, array($cron, 'deactivation'));
+register_activation_hook(__FILE__, array($cron, 'activate'));
+register_deactivation_hook(__FILE__, array($cron, 'deactivation'));
