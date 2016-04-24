@@ -20,8 +20,8 @@ class WPRCA_Revisions {
 		$date_to_delete_revisions_before = $current_date->sub( new DateInterval( 'P30D' ) ); //TODO: fill-in days
 
 		$revisions = $this->get_revisions_ids_before_date( $date_to_delete_revisions_before );
-		
-		$this->delete_revisions($revisions);
+
+		$this->delete_revisions( $revisions );
 	}
 
 	public function get_revisions_ids_before_date( $date ) {
@@ -30,6 +30,8 @@ class WPRCA_Revisions {
 			'fields'      => 'id=>parent',
 			'post_type'   => 'revision',
 			'post_status' => 'inherit',
+			'orderby'     => 'post_date',
+			'order'       => 'ASC',
 			'date_query'  => array(
 				array(
 					'before' => array(
