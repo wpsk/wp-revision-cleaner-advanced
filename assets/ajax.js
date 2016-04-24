@@ -3,7 +3,7 @@ jQuery(document).ready(function($) {
 	var wprcaAjaxForm = $( '#wprca-ajax-form' ),
 			wprcaAjaxProgressWrapper = $( '#wprca-ajax' ),
 			wprcaAjaxProgressBar = wprcaAjaxProgressWrapper.find( '.wprca-ajax-progress-bar' ),
-			wprcaAjaxProgressStatus = wprcaAjaxProgressWrapper.find( '.wprca-ajax-status' ),
+			wprcaAjaxProgressStatus = wprcaAjaxProgressWrapper.find( '.wprca-ajax-status' );
 
 	$( wprcaAjaxForm ).submit( function(e) {
 		e.preventDefault();
@@ -30,7 +30,7 @@ jQuery(document).ready(function($) {
 			},
 			fail: function() {
 				alert( 'sorry, revision deletion failed' );
-			}
+			},
 			done: function( response ) {
 				if( response.status == 'working' ) {
 					wprcaUpdateAjaxProgress( response.progress );
