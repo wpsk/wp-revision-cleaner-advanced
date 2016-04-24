@@ -47,7 +47,7 @@ jQuery(document).ready(function($) {
 
 	function wprcaUpdateAjaxProgress( progress ) {
 		wprcaAjaxProgress.find( '.wprca-progress-bar-progress' ).css({ 'width': progress.percentage + '%' });
-		wprcaAjaxProgress.find( '.wprca-progress-bar-status' ).text( progress.done ' / ' progress.count );
+		wprcaAjaxProgress.find( '.wprca-progress-bar-status' ).text( progress.done + ' / ' + progress.count );
 	}
 
 	function wprcaFinishAjax( result ) {
@@ -55,4 +55,4 @@ jQuery(document).ready(function($) {
 		wprcaAjaxProgress.find( '.progress-status' ).text( result );
 	}
 
-}
+});

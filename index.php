@@ -2,10 +2,10 @@
 
 /*
  * Plugin Name: Revision Cleaner Advanced
- * Description: 
+ * Description: Automatic cleanup of revision easier than ever before.
  * Version: 1.0.0
  * Author: WordPress.sk
- * Author URI: http://wp.sk/
+ * Author URI: http://www.wp.sk/
  * License: GPL2
  * License URI: https://www.gnu.org/licenses/gpl-2.0.html
  */
