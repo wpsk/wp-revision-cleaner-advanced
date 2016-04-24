@@ -18,7 +18,7 @@ class WPRCA_Admin {
 
     public function my_plugin_menu() {
     	//step1
-    	add_options_page( 'My Plugin Options', 'My Plugin', 'manage_options', 'my-unique-identifier', 'my_plugin_options' );
+    	add_options_page( 'My Plugin Options', 'My Plugin', 'manage_options', 'my-unique-identifier', array($this, 'my_plugin_options') );
     }
 
     public function my_plugin_options() {
