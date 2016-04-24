@@ -24,6 +24,7 @@ class WPRCA_Revisions {
 
 	public function get_revisions_before_date( $date ) {
 		$revisions_params = array(
+			'fields'      => 'ids',
 			'post_type'   => 'revision',
 			'post_status' => 'inherit',
 			'date_query'  => array(
