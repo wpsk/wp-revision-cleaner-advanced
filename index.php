@@ -18,11 +18,14 @@ define('WPRCA_PLUGIN_DIR', $plugin_dir);
 define('WPRCA_PLUGIN_INDEX', __FILE__);
 
 require_once 'lib' . DIRECTORY_SEPARATOR . 'WPRCA_Core.php';
+require_once 'lib' . DIRECTORY_SEPARATOR . 'WPRCA_Revisions.php';
 
 // enable I18N
 load_plugin_textdomain('wprca', false, dirname(plugin_basename(__FILE__)) . '/i18n/');
 
-WPRCA_Core::__init();
+WPRCA_Core::init();
+$revisions = new WPRCA_Revisions();
+$revisions->init();
 //$cron = new WPRCA_Cron();
 
 //	activation & deactivation hooks (these MUST be in this file)
