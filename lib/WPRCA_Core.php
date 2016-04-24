@@ -9,8 +9,10 @@
 class WPRCA_Core {
 
 		public static function init() {
+			$wprca_admin =  new WPRCA_Admin();
+			$wprca_admin->init();
 
-	//	add calls to other init functions here.
+			//	add calls to other init functions here.
 		}
 
 }
