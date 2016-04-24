@@ -48,6 +48,10 @@ class WPRCA_Revisions {
 		return $revisions_query->get_posts();
 	}
 
+	public function get_revision_count( $revisions ) {
+		return count( $revisions );
+	}
+
 	public function delete_revisions( $revisions ) {
 		foreach ( $revisions as $revision_id => $post_id ) {
 			wp_delete_post_revision( $revision_id );
