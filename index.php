@@ -27,6 +27,9 @@ load_plugin_textdomain('wprca', false, dirname(plugin_basename(__FILE__)) . '/i1
 WPRCA_Core::init();
 $cron = new WPRCA_Cron();
 
+$revisions = new WPRCA_Revisions();
+$revisions->init();
+
 //	activation & deactivation hooks (these MUST be in this file)
 register_activation_hook(__FILE__, array($cron, 'activate'));
 register_deactivation_hook(__FILE__, array($cron, 'deactivation'));
