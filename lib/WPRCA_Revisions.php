@@ -8,16 +8,10 @@
  */
 class WPRCA_Revisions {
 
-	public function init() {
-		add_action( 'init', array( $this, 'test' ) );
-	}
-
-	public function test() {
-		$days = 30;
-
+	public function delete_revisions_older_than($days) {
 		$current_date = new DateTime();
 
-		$date_to_delete_revisions_before = $current_date->sub( new DateInterval( 'P30D' ) ); //TODO: fill-in days
+		$date_to_delete_revisions_before = $current_date->sub( new DateInterval( 'P' . $days . 'D' ) );
 
 		$revisions = $this->get_revisions_ids_before_date( $date_to_delete_revisions_before );
 
