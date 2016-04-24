@@ -8,7 +8,7 @@
  */
 class WPRCA_Revisions {
 
-	public function delete_revisions_older_than($days) {
+	public function delete_revisions_older_than( $days ) {
 		$current_date = new DateTime();
 
 		$date_to_delete_revisions_before = $current_date->sub( new DateInterval( 'P' . $days . 'D' ) );
@@ -21,12 +21,13 @@ class WPRCA_Revisions {
 	public function get_revisions_ids_before_date( $date ) {
 		// TODO: get only subset of all posts (chunks).
 		$revisions_params = array(
-			'fields'      => 'id=>parent',
-			'post_type'   => 'revision',
-			'post_status' => 'inherit',
-			'orderby'     => 'post_date',
-			'order'       => 'ASC',
-			'date_query'  => array(
+			'fields'         => 'id=>parent',
+			'post_type'      => 'revision',
+			'post_status'    => 'inherit',
+			'orderby'        => 'post_date',
+			'order'          => 'ASC',
+			'posts_per_page' => 500, // TODO: allow for dynamic configuration
+			'date_query'     => array(
 				array(
 					'before' => array(
 						'year'  => $date->format( 'Y' ),
