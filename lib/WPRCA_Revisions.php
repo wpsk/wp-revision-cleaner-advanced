@@ -13,6 +13,14 @@ class WPRCA_Revisions {
 	}
 	
 	public function get_revisions() {
+		$revisions_params = array(
+			'post_type' => 'revision',
+			'post_status' => 'inherit'
+		);
+		
+		$revisions_query = new WP_Query( $revisions_params );
+
+		$revisions = $revisions_query->get_posts();
 		
 	}
 }
